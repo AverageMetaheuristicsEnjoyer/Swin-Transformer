@@ -117,7 +117,8 @@ def build_dataset(is_train, config):
         dataset = IN22KDATASET(config.DATA.DATA_PATH, ann_file, transform)
         nb_classes = 21841
     elif config.DATA.DATASET == "cifar10":
-        dataset = datasets.CIFAR10(config.DATA.DATA_PATH, train = is_train, download = is_train, transform = transform)
+        root = os.path.join(config.DATA.DATA_PATH, prefix)
+        dataset = datasets.CIFAR10(root, train = is_train, download = is_train, transform = transform)
         nb_classes = 10
     else:
         raise NotImplementedError("We only support ImageNet and Cifar10 Now.")
